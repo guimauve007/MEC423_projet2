@@ -1,5 +1,5 @@
-# MEC423-PROJET1
-Projet 1 du cours MEC423
+# MEC423-PROJET2
+Projet 2 du cours MEC423
 
 ## Pour cloner ce dossier sur votre ordinateur:
 - Installer git sur votre ordinateur: https://git-scm.com/downloads
@@ -8,7 +8,7 @@ Projet 1 du cours MEC423
 - Clic droit dans le dossier, puis "Git Bash Here"
 - copier/coller la commande suivante (shift + insert):
 ```sh
-	git clone https://github.com/guimauve007/MEC423_projet1.git
+	git clone https://github.com/guimauve007/MEC423_projet2.git
 ```
 
 ## Pour démarrer avec pycharm:
@@ -19,7 +19,7 @@ Projet 1 du cours MEC423
 ![image](https://github.com/guimauve007/MEC423_projet1/assets/96882237/6c35a976-4ab9-4d39-a40a-fc47a7e0f937)
 
 - Cliquer sur 'Create', puis 'Create from Existing Sources'
-- Aller dans Python Packages puis installer les dépendances du projet, soit 'numpy' et 'matplotlib'
+- Aller dans Python Packages puis installer les dépendances du projet, soit 'numpy'
 
 
 ## Pour publier (push) des changements apportés au code:
