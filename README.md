@@ -1,5 +1,5 @@
-# MEC423-PROJET1
-Projet 1 du cours MEC423
+# MEC423-PROJET2
+Projet 2 du cours MEC423
 
 ## Pour cloner ce dossier sur votre ordinateur:
 - Installer git sur votre ordinateur: https://git-scm.com/downloads
