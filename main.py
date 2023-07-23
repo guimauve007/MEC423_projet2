@@ -1,53 +1,51 @@
 import numpy as py
-from numpy.linalg import solve
-import matplotlib.pyplot as plt
-import matplotlib.tri as tri
 
-pi = py.pi # Nombre 3.14159...
+pi = py.pi  # Nombre 3.14159...
 
-def calculParoiMinceCylindre(e1, p, R):
+
+def calcul_paroi_mince_cylindre(e1, pression_interne, rayon_interieur):
     # Paramètres pour "cylindre à paroi mince sous pression interne"
-    #e1:100 épaisseur en mm, à déterminer
-    #p: pression interne MPa
-    #R: rayon intérieur mm
+    # e1: épaisseur en mm, à déterminer
+    # p: pression interne MPa
+    # R: rayon intérieur mm
 
     # Calcul de Contrainte Von-Mises moyenne dans la paroi
-    Rm = R+e1/2
-    s_y = p*R**2/(2*Rm*e1)
-    s_th = p*R/e1
-    s_r = -0.5*p # contrainte radiale au milieu de l'épaisseur
-    s_VonMises_moy = py.sqrt(s_y**2+s_th**2+s_r**2-s_y*s_th-s_th*s_r-s_r*s_y)
-    print("Von Mises Moyen: ", round(s_VonMises_moy, 2))
+    rm = rayon_interieur + e1 / 2
+    s_y = pression_interne * rayon_interieur ** 2 / (2 * rm * e1)
+    s_th = pression_interne * rayon_interieur / e1
+    s_r = -0.5 * pression_interne  # contrainte radiale au milieu de l'épaisseur
+    s_von_mises_moy = py.sqrt(s_y**2+s_th**2+s_r**2-s_y*s_th-s_th*s_r-s_r*s_y)
 
     # Calcul de Contrainte Von-Mises moyenne+flexion max dans la paroi
-    s_r = -p # contrainte radiale au rayon intérieur de l'épaisseur
-    s_VonMises_max = py.sqrt(s_y**2+s_th**2+s_r**2-s_y*s_th-s_th*s_r-s_r*s_y)
-    print("Von Mises Max  : ", round(s_VonMises_max, 2))
+    s_r = -pression_interne  # contrainte radiale au rayon intérieur de l'épaisseur
+    s_von_mises_max = py.sqrt(s_y**2+s_th**2+s_r**2-s_y*s_th-s_th*s_r-s_r*s_y)
 
-def calculParoiMinceSphere(e2, p, R):
+    return s_von_mises_moy, s_von_mises_max
+
+
+def calcul_paroi_mince_sphere(e2, pression_interne, rayon_interieur):
     # Paramètres pour "sphère à paroi mince sous pression interne"
-    #e2: épaisseur en mm, à déterminer
-    #p: pression interne MPa
-    #R: rayon intérieur mm
+    # e2: épaisseur en mm, à déterminer
+    # p: pression interne MPa
+    # R: rayon intérieur mm
 
     # Calcul de Contrainte Von-Mises moyenne dans la paroi
-    Rm = R + e2 / 2
-    s_y = p * R ** 2 / (2 * Rm * e2)
+    rm = rayon_interieur + e2 / 2
+    s_y = pression_interne * rayon_interieur ** 2 / (2 * rm * e2)
     s_th = s_y
-    s_r = -0.5 * p  # contrainte radiale au milieu de l'épaisseur
-    s_VonMises_moy = py.sqrt(s_y ** 2 + s_th ** 2 + s_r ** 2 - s_y * s_th - s_th * s_r - s_r * s_y)
-    print("Von Mises Moyen: ", round(s_VonMises_moy, 2))
+    s_r = -0.5 * pression_interne  # contrainte radiale au milieu de l'épaisseur
+    s_von_mises_moy = py.sqrt(s_y ** 2 + s_th ** 2 + s_r ** 2 - s_y * s_th - s_th * s_r - s_r * s_y)
 
     # Calcul de Contrainte Von-Mises moyenne+flexion max dans la paroi
-    s_r = -p  # contrainte radiale au rayon intérieur de l'épaisseur
-    s_VonMises_max = py.sqrt(s_y ** 2 + s_th ** 2 + s_r ** 2 - s_y * s_th - s_th * s_r - s_r * s_y)
-    print("Von Mises Max  : ", round(s_VonMises_max, 2))
+    s_r = -pression_interne  # contrainte radiale au rayon intérieur de l'épaisseur
+    s_von_mises_max = py.sqrt(s_y ** 2 + s_th ** 2 + s_r ** 2 - s_y * s_th - s_th * s_r - s_r * s_y)
+
+    return s_von_mises_moy, s_von_mises_max
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print("cylindre:")
-    calculParoiMinceCylindre(55, 6, 1850)
+    print(calcul_paroi_mince_cylindre(55, 6, 1850))
     print("sphere:")
-    calculParoiMinceSphere(30, 6, 1850)
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print(calcul_paroi_mince_sphere(30, 6, 1850))
